@@ -27,6 +27,10 @@ Results will be saved as CSV files in 'results' dir. Naming pattern is '*model*.
 
 Best checkpoints—in terms of validation loss, accuracy, f-1.0 and f-0.5 score—will be saved in 'checkpoints' dir. Naming pattern is '*model*.*label*.*config*.*iter*.h5'.
 
+# Training on Intel AI DevCloud
+
+Sample jobs can be found in 'jobs' dir. Submit jobs using the `qsub` command.
+
 # Model Summary
 
 ```
