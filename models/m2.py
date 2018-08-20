@@ -1,13 +1,13 @@
 try:
-    from tensorflow.contrib.keras.python.keras.models import Sequential
-    from tensorflow.contrib.keras.python.keras.optimizers import Adam
-    from tensorflow.contrib.keras.python.keras.layers import Conv2D, Flatten, Dense, AlphaDropout
-    from tensorflow.contrib.keras.python.keras.layers.pooling import MaxPooling2D, AveragePooling2D
-except ImportError:
     from tensorflow.python.keras.models import Sequential
     from tensorflow.python.keras.optimizers import Adam
     from tensorflow.python.keras.layers import Conv2D, Flatten, Dense, AlphaDropout
     from tensorflow.python.keras.layers import MaxPooling2D, AveragePooling2D
+except ImportError:
+    from tensorflow.contrib.keras.python.keras.models import Sequential
+    from tensorflow.contrib.keras.python.keras.optimizers import Adam
+    from tensorflow.contrib.keras.python.keras.layers import Conv2D, Flatten, Dense, AlphaDropout
+    from tensorflow.contrib.keras.python.keras.layers.pooling import MaxPooling2D, AveragePooling2D
 
 preprocess_config = {
     'shift_range': 5,

@@ -17,9 +17,9 @@ from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 from sklearn.exceptions import UndefinedMetricWarning
 warnings.filterwarnings('ignore', category=UndefinedMetricWarning)
 try:
-    from tensorflow.contrib.keras.python import keras
-except ImportError:
     from tensorflow.python import keras
+except ImportError:
+    from tensorflow.contrib.keras.python import keras
 
 models_dir_path = 'models'
 results_dir_path = 'results'
