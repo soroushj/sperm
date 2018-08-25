@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
 import os
-import sys
-import warnings
-import importlib.util
-
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+import warnings
 warnings.filterwarnings('ignore')
+import sys
+import importlib.util
 
 models_dir_path = 'models'
 model_input_shape = (64, 64, 1)
