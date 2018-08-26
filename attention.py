@@ -16,8 +16,8 @@ def make_dirs(*paths):
         if not os.path.exists(path):
             os.makedirs(path)
 
-images_dir = '../sphemor-data-preparation/images/01-gray-crop-64'
-leveled_images_dir = '../sphemor-data-preparation/images/05-2-autolevels'
+images_dir = '../sperm-data-preparation/images/01-gray-crop-64'
+leveled_images_dir = '../sperm-data-preparation/images/05-2-autolevels'
 image_names = os.listdir(images_dir)
 image_names.sort()
 models_dir = 'saved/final-models'

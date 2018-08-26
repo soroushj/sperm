@@ -14,7 +14,7 @@ class_c_dict = {'h': '0', 'v': '0', 't': '0', 'a': 'n'}
 def get_class(image_name, label):
     return 0 if image_name[class_i_dict[label]] == class_c_dict[label] else 1
 
-images_dir = '../sphemor-data-preparation/images/01-gray-crop-64'
+images_dir = '../sperm-data-preparation/images/01-gray-crop-64'
 image_names = os.listdir(images_dir)
 image_names.sort()
 models_dir = 'saved/final-models'
