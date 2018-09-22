@@ -1,0 +1,9 @@
+Non-optimized CPU, 32 samples, 100 iters
+Average inference time: 0.028477873355150223 seconds
+
+Optimized CPU, 32 samples, 100 iters
+Average inference time: 0.024088508933782577 seconds
+
+Optimized GPU, 32 samples, 100 iters
+Average inference time: 0.004167304262518883 seconds
+
