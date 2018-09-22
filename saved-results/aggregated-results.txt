@@ -1,0 +1,11 @@
+predictions-bin
+test accuracy = 74.00
+test precision = 76.97
+test recall = 76.05
+test f-0.5 = 76.78
+
+predictions-prob
+test accuracy = 64.67
+test precision = 62.25
+test recall = 92.81
+test f-0.5 = 66.64
