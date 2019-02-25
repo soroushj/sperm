@@ -3,11 +3,11 @@
 import os
 import csv
 
-dirname = 'predictions'
+predictions_dir = 'predictions'
 
-for filename in os.listdir(dirname):
+for filename in os.listdir(predictions_dir):
     tp, tn, fp, fn = 0, 0, 0, 0
-    with open(os.path.join(dirname, filename)) as f:
+    with open(os.path.join(predictions_dir, filename)) as f:
         reader = csv.reader(f)
         next(reader)
         for row in reader:
