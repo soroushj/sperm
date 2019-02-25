@@ -1,6 +1,0 @@
-total accuracy h: 0.5877
-test accuracy h: 0.6100
-total accuracy v: 0.7747
-test accuracy v: 0.8033
-total accuracy t: 0.9390
-test accuracy t: 0.9233

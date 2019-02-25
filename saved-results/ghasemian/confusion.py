@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
+import os
 import csv
 
-for path in ('ghasemian.h.csv', 'ghasemian.v.csv', 'ghasemian.t.csv'):
+dirname = 'predictions'
+
+for filename in os.listdir(dirname):
     tp, tn, fp, fn = 0, 0, 0, 0
-    with open(path) as f:
+    with open(os.path.join(dirname, filename)) as f:
         reader = csv.reader(f)
         next(reader)
         for row in reader:
@@ -21,6 +24,6 @@ for path in ('ghasemian.h.csv', 'ghasemian.v.csv', 'ghasemian.t.csv'):
                     else:
                         fn += 1
     assert tp + tn + fp + fn == 300
-    print(path)
+    print(filename)
     print('tp = {}\ntn = {}\nfp = {}\nfn = {}'.format(tp, tn, fp, fn))
     print()

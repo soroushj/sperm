@@ -34,7 +34,7 @@ metrics = []
 for l, c in enumerate(('h', 'v', 't')):
     total_truth = 0
     test_truth = 0
-    with open('ghasemian.{}.csv'.format(c), 'w') as eval_file:
+    with open('predictions/ghasemian.{}.csv'.format(c), 'w') as eval_file:
         evl_writer = csv.writer(eval_file)
         evl_writer.writerow(header)
         for i in range(1, 1541):
@@ -50,6 +50,4 @@ for l, c in enumerate(('h', 'v', 't')):
     test_acc = test_truth / 300
     metrics.append('total accuracy {}: {:.4f}'.format(c, total_acc))
     metrics.append('test accuracy {}: {:.4f}'.format(c, test_acc))
-metrics.append('')
-with open('ghasemian.metrics.txt', 'w') as metrics_file:
-    metrics_file.write('\n'.join(metrics))
+print('\n'.join(metrics))
