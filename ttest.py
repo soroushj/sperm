@@ -47,5 +47,5 @@ for label, files in sorted(prediction_files.items()):
     tt = ttest_rel(a, b)
     mc = mcnemar(ct, exact=False)
     print(' t-test, {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\tpval={}'.format(label, tt.statistic, tt.pvalue, tt.statistic, tt.pvalue))
-    print('mcnemar, {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\t\tpval={}'.format(label, mc.statistic, mc.pvalue, mc.statistic, mc.pvalue))
+    print('mcnemar, {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\tpval={}'.format(label, mc.statistic, mc.pvalue, mc.statistic, mc.pvalue))
     print()
