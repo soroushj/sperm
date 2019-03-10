@@ -25,6 +25,7 @@ for label, files in sorted(prediction_files.items()):
     a = get_test_col_list(files[0])
     b = get_test_col_list(files[1])
     # contingency table
+    # ours, theirs
     # 00=YY 01=YN
     # 10=NY 11=NN
     ct = [
@@ -41,8 +42,10 @@ for label, files in sorted(prediction_files.items()):
         elif not x and not y:
             ct[1][1] += 1
     assert sum(ct[0]) + sum(ct[1]) == 300
+    print('contingency table, {}: {}'.format(label, ct))
+    print()
     tt = ttest_rel(a, b)
     mc = mcnemar(ct, exact=True)
-    print(' t-test {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\tpval={}'.format(label, tt.statistic, tt.pvalue, tt.statistic, tt.pvalue))
-    print('mcnemar {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\t\tpval={}'.format(label, mc.statistic, mc.pvalue, mc.statistic, mc.pvalue))
+    print(' t-test, {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\tpval={}'.format(label, tt.statistic, tt.pvalue, tt.statistic, tt.pvalue))
+    print('mcnemar, {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\t\tpval={}'.format(label, mc.statistic, mc.pvalue, mc.statistic, mc.pvalue))
     print()
