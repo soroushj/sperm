@@ -24,4 +24,4 @@ for label, files in sorted(prediction_files.items()):
     a = get_test_col_list(files[0], 1)
     b = get_test_col_list(files[1], 2)
     r = ttest_rel(a, b)
-    print('{}: {}'.format(label, r))
+    print('{}: {:.6f}    {}'.format(label, r.pvalue, r))
