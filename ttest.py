@@ -42,10 +42,10 @@ for label, files in sorted(prediction_files.items()):
         elif not x and not y:
             ct[1][1] += 1
     assert sum(ct[0]) + sum(ct[1]) == 300
-    print('contingency table, {}: {}'.format(label, ct))
+    print('contingency table, {}:\n{}\t{}\n{}\t{}'.format(label, ct[0][0], ct[0][1], ct[1][0], ct[1][1]))
     print()
     tt = ttest_rel(a, b)
-    mc = mcnemar(ct, exact=True)
+    mc = mcnemar(ct, exact=False)
     print(' t-test, {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\tpval={}'.format(label, tt.statistic, tt.pvalue, tt.statistic, tt.pvalue))
     print('mcnemar, {}\t\tstat={:+.2f}\tpval={:.6f}\t\tstat={}\t\tpval={}'.format(label, mc.statistic, mc.pvalue, mc.statistic, mc.pvalue))
     print()
