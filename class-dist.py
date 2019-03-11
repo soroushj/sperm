@@ -41,5 +41,5 @@ for set_name in set_names:
         num_pos = num_pos_dict[set_name][label]
         num_neg = total - num_pos
         ratio_pos = num_pos / total
-        print('{}\t{}\t{}\t{:.4f}'.format(label,num_pos, num_neg, ratio_pos))
+        print('{}\t{}\t{}\t{:.2f}'.format(label,num_pos, num_neg, ratio_pos * 100))
     print()
