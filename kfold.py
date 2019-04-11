@@ -10,6 +10,8 @@ train_size = 1000
 images = os.listdir(images_dir)
 images.sort()
 fold_size = len(images) // num_folds
+test_size = fold_size
+valid_size = len(images) - test_size - train_size
 
 def get_sets(k):
     assert 0 <= k < num_folds
