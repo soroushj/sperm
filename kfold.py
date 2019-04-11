@@ -4,6 +4,7 @@ import os
 from random import shuffle
 
 images_dir = 'data/images/gray'
+folds_dir = 'data-folds'
 num_folds = 5
 train_size = 1000
 
@@ -24,5 +25,9 @@ def get_sets(k):
     valid = non_test[train_size:]
     return train, valid, test
 
+set_names = ['train', 'valid', 'test']
 for k in range(num_folds):
-    print(get_sets(k))
+    for set_data, set_name in zip(get_sets(k), set_names):
+        set_path = os.path.join(folds_dir, '{}.{}.txt'.format(k, set_name))
+        with open(set_path, 'w') as set_file:
+            set_file.write('{}\n'.format('\n'.join(set_data)))
