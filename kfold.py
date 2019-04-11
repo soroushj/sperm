@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+from random import shuffle
 
 images_dir = 'data/images/gray'
 num_folds = 5
@@ -16,6 +17,7 @@ def get_sets(k):
     b = (k + 1) * fold_size
     test = images[a:b]
     non_test = images[:a] + images[b:]
+    shuffle(non_test)
     train = non_test[:train_size]
     valid = non_test[train_size:]
     return train, valid, test
