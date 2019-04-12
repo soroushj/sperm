@@ -37,4 +37,7 @@ def get_set(k, set_name):
 set_names = ['valid', 'test']
 for k in range(num_folds):
     for set_name in set_names:
-        print(get_set(k, set_name))
+        x, y = get_set(k, set_name)
+        print('x:', x)
+        print('y:', y)
+        print()
