@@ -38,6 +38,8 @@ set_names = ['valid', 'test']
 for k in range(num_folds):
     for set_name in set_names:
         x, y = get_set(k, set_name)
-        print('x:', x)
-        print('y:', y)
-        print()
+        x_path = os.path.join(folds_dir, '{}.{}.x.npy'.format(k, set_name))
+        np.save(x_path, x)
+        for label in labels:
+            y_path = os.path.join(folds_dir, '{}.{}.y.{}.npy'.format(k, set_name, label))
+            np.save(y_path, y[label])
