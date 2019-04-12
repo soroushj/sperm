@@ -2,7 +2,7 @@
 
 import os
 import numpy as np
-from scipy import misc
+import imageio
 
 images_dir = 'data/images/gray'
 folds_dir = 'data-folds'
@@ -14,7 +14,7 @@ labels = class_i_dict.keys()
 
 def get_image(image_name):
     image_path = os.path.join(images_dir, image_name)
-    image = misc.imread(image_path)
+    image = imageio.imread(image_path)
     cropped = image[32:-32,32:-32]
     cropped = cropped.astype(np.float32) * (1.0 / 255.0)
     cropped -= cropped.mean()
