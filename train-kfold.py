@@ -95,10 +95,10 @@ log_header = [
     'test-acc', 'test-loss', 'test-precision', 'test-recall', 'test-f1.0-score', 'test-f0.5-score', 'test-tp', 'test-fp', 'test-fn', 'test-tn'
 ]
 images_dir_path = 'data/images/' + dataset_name
-x_valid_file_path = 'data/dataset/' + dataset_name + '/x_valid.npy'
-y_valid_file_path = 'data/dataset/' + dataset_name + '/y_valid_' + label_type + '.npy'
-x_test_file_path = 'data/dataset/' + dataset_name + '/x_test.npy'
-y_test_file_path = 'data/dataset/' + dataset_name + '/y_test_' + label_type + '.npy'
+x_valid_file_path = os.path.join(folds_dir, '{}.valid.x.npy'.format(fold_k))
+y_valid_file_path = os.path.join(folds_dir, '{}.valid.y.{}.npy'.format(fold_k, label_type))
+x_test_file_path = os.path.join(folds_dir, '{}.test.x.npy'.format(fold_k))
+y_test_file_path = os.path.join(folds_dir, '{}.test.y.{}.npy'.format(fold_k, label_type))
 image_center = image_size // 2
 patch_center = patch_size // 2
 crop_margin = (image_size - patch_size) // 2
