@@ -31,13 +31,15 @@ flush_epochs = 10
 train_size = 1000
 image_size = 128
 patch_size = 64
+folds_dir = 'data-folds'
+num_folds = 5
 
 
 assert os.path.isdir(results_dir_path)
 assert os.path.isdir(checkpoints_dir_path)
 assert image_size % 2 == 0
 assert patch_size % 2 == 0
-assert 4 <= len(sys.argv) <= 5
+assert 4 <= len(sys.argv) <= 6
 model_name = sys.argv[1]
 modeldef_spec = importlib.util.spec_from_file_location('modeldef', os.path.join(models_dir_path, model_name + '.py'))
 modeldef = importlib.util.module_from_spec(modeldef_spec)
@@ -53,7 +55,12 @@ else:
 assert 0 <= settings <= 3
 no_augmentation = settings & 1
 no_oversampling = settings & 2
-training_name = model_name + '.' + label_type + '.' + str(settings)
+if len(sys.argv) > 5:
+    fold_k = int(sys.argv[5])
+else:
+    fold_k = 0
+assert 0 <= fold_k < num_folds
+training_name = model_name + '.' + label_type + '.' + str(settings) + '.' + str(fold_k)
 class_i_dict = {'h': 9, 'v': 10, 't': 11, 'a': 13}
 class_c_dict = {'h': '0', 'v': '0', 't': '0', 'a': 'n'}
 class_i = class_i_dict[label_type]
