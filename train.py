@@ -46,7 +46,7 @@ label_type = sys.argv[2]
 assert label_type in ('h', 'v', 't', 'a')
 num_epochs = int(sys.argv[3])
 assert num_epochs > 0
-if len(sys.argv) >= 5:
+if len(sys.argv) > 4:
     settings = int(sys.argv[4])
 else:
     settings = 0
