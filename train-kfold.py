@@ -28,7 +28,6 @@ dataset_name_default = 'gray'
 save_summary = False
 print_summary = False
 flush_epochs = 10
-train_size = 1000
 image_size = 128
 patch_size = 64
 folds_dir = 'data-folds'
@@ -99,6 +98,7 @@ x_valid_file_path = os.path.join(folds_dir, '{}.valid.x.npy'.format(fold_k))
 y_valid_file_path = os.path.join(folds_dir, '{}.valid.y.{}.npy'.format(fold_k, label_type))
 x_test_file_path = os.path.join(folds_dir, '{}.test.x.npy'.format(fold_k))
 y_test_file_path = os.path.join(folds_dir, '{}.test.y.{}.npy'.format(fold_k, label_type))
+train_samples_file_path = os.path.join(folds_dir, '{}.train.txt'.format(fold_k))
 image_center = image_size // 2
 patch_center = patch_size // 2
 crop_margin = (image_size - patch_size) // 2
@@ -293,9 +293,9 @@ if not model_log_file_exists:
     model_log_writer.writerow(log_header)
 
 
-train_samples = os.listdir(images_dir_path)
-train_samples.sort()
-train_samples = train_samples[:train_size]
+with open(train_samples_file_path) as train_samples_file:
+    train_samples = train_samples_file.read().split()
+train_size = len(train_samples)
 labels = [0, 1]
 if no_oversampling:
     sample_index_real = 0
