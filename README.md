@@ -31,6 +31,40 @@ Best checkpoints—in terms of validation loss, accuracy, f-1.0 and f-0.5 score�
 
 All requirements are pre-installed on Intel AI DevCloud. Sample jobs can be found in 'jobs' dir. Submit jobs using the `qsub` command.
 
+# Train (k-fold)
+
+```
+./train-kfold.py <model> <label> <iters> [<config> [<k>]]
+```
+
+Trains the model and saves the results.
+
+- **`model:`** model name; file '*model*.py' should be found in 'models' dir
+- **`label:`** label to train for; one of:
+  - **a:** acrosome
+  - **h:** head
+  - **t:** tail
+  - **v:** vacuole
+- **`iters:`** number of train iterations
+- **`config:`** optional train config; one of:
+  - **0:** oversampling on, augmentation on (default)
+  - **1:** oversampling on, augmentation off
+  - **2:** oversampling off, augmentation on
+  - **3:** oversampling off, augmentation off
+- **`k:`** the fold (0 <= k <= 4)
+
+## Results
+
+Results will be saved as CSV files in 'results' dir. Naming pattern is '*model*.*label*.*config*.*k*.csv'.
+
+## Checkpoints
+
+Best checkpoints—in terms of validation loss, accuracy, f-1.0 and f-0.5 score—will be saved in 'checkpoints' dir. Naming pattern is '*model*.*label*.*config*.*k*.*iter*.h5'.
+
+## Training on Intel AI DevCloud
+
+All requirements are pre-installed on Intel AI DevCloud. Sample jobs can be found in 'jobs-kfold' dir. Submit jobs using the `qsub` command.
+
 # Model Summary
 
 ```
