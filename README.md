@@ -1,6 +1,6 @@
 # Train
 
-```
+```shell
 ./train.py <model> <label> <iters> [<config>]
 ```
 
@@ -29,11 +29,47 @@ Best checkpoints—in terms of validation loss, accuracy, f-1.0 and f-0.5 score�
 
 ## Training on Intel AI DevCloud
 
-All requirements are pre-installed on Intel AI DevCloud. Sample jobs can be found in 'jobs' dir. Submit jobs using the `qsub` command.
+Request access at [https://software.intel.com/en-us/ai/devcloud](https://software.intel.com/en-us/ai/devcloud).
+
+### Requirements
+
+All requirements are pre-installed, except for OpenCV. Install OpenCV using this command:
+
+```shell
+echo "pip install --user opencv-python-headless" | qsub
+```
+
+### Submitting Jos
+
+Sample jobs can be found in 'jobs' and 'jobs-kfold' dirs. Submit jobs using the `qsub` command.
+
+Submit a file:
+
+```shell
+qsub job.sh
+```
+
+Submit multiple files:
+
+```shell
+for j in *.sh; do qsub $j; done
+```
+
+Submit a command:
+
+```shell
+echo "my command" | qsub
+```
+
+View jobs status:
+
+```shell
+qstat
+```
 
 # Train (k-fold)
 
-```
+```shell
 ./train-kfold.py <model> <label> <iters> [<config> [<k>]]
 ```
 
@@ -61,13 +97,9 @@ Results will be saved as CSV files in 'results' dir. Naming pattern is '*model*.
 
 Best checkpoints—in terms of validation loss, accuracy, f-1.0 and f-0.5 score—will be saved in 'checkpoints' dir. Naming pattern is '*model*.*label*.*config*.*k*.*iter*.h5'.
 
-## Training on Intel AI DevCloud
-
-All requirements are pre-installed on Intel AI DevCloud. Sample jobs can be found in 'jobs-kfold' dir. Submit jobs using the `qsub` command.
-
 # Model Summary
 
-```
+```shell
 ./summary.py <model>
 ```
 
