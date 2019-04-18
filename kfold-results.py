@@ -13,7 +13,7 @@ from sklearn.metrics import roc_auc_score
 results_dir = 'saved-results/kfold/results1'
 checkpoints_dir = 'saved-results/kfold/checkpoints1'
 folds_dir = 'data-folds'
-model = 'm1'
+model_name = 'm1'
 labels = ['a', 'h', 'v']
 config = 0
 num_folds = 5
@@ -35,10 +35,10 @@ def mcc(tp, tn, fp, fn):
 result_dfs = []
 for label in labels:
     for fold in range(num_folds):
-        result_path = os.path.join(results_dir, '{}.{}.{}.{}.csv'.format(model, label, config, fold))
+        result_path = os.path.join(results_dir, '{}.{}.{}.{}.csv'.format(model_name, label, config, fold))
         result = get_result(result_path)
         epoch = result[['epoch']].iloc[0].values[0]
-        model_path = os.path.join(checkpoints_dir, '{}.{}.{}.{}.{}.h5'.format(model, label, config, fold, epoch))
+        model_path = os.path.join(checkpoints_dir, '{}.{}.{}.{}.{}.h5'.format(model_name, label, config, fold, epoch))
         model = load_model(model_path)
         x_path = os.path.join(folds_dir, '{}.test.x.npy'.format(fold))
         y_path = os.path.join(folds_dir, '{}.test.y.{}.npy'.format(fold, label))
