@@ -36,16 +36,15 @@ for label in labels:
     for fold in range(num_folds):
         result_path = os.path.join(results_dir, '{}.{}.{}.{}.csv'.format(model, label, config, fold))
         result = get_result(result_path)
-        # epoch = result[['epoch']].iloc[0].values[0]
-        # model_path = os.path.join(checkpoints_dir, '{}.{}.{}.{}.{}.h5'.format(model, label, config, fold, epoch))
-        # model = load_model(model_path)
-        # x_path = os.path.join(folds_dir, '{}.test.x.npy'.format(fold))
-        # y_path = os.path.join(folds_dir, '{}.test.y.{}.npy'.format(fold, label))
-        # x = np.expand_dims(np.load(x_path), axis=-1)
-        # y = np.load(y_path)
-        # predictions = model.predict(x, batch_size=y.shape[0], verbose=0).reshape(y.shape)
-        # auc = roc_auc_score(y, predictions)
-        auc = 0.0
+        epoch = result[['epoch']].iloc[0].values[0]
+        model_path = os.path.join(checkpoints_dir, '{}.{}.{}.{}.{}.h5'.format(model, label, config, fold, epoch))
+        model = load_model(model_path)
+        x_path = os.path.join(folds_dir, '{}.test.x.npy'.format(fold))
+        y_path = os.path.join(folds_dir, '{}.test.y.{}.npy'.format(fold, label))
+        x = np.expand_dims(np.load(x_path), axis=-1)
+        y = np.load(y_path)
+        predictions = model.predict(x, batch_size=y.shape[0], verbose=0).reshape(y.shape)
+        auc = roc_auc_score(y, predictions)
         result.insert(0, 'label', [label])
         result.insert(1, 'fold', [fold])
         tp, fp, fn, tn = result[['tp', 'fp', 'fn', 'tn']].iloc[0].values
