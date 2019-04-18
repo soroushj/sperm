@@ -19,6 +19,7 @@ config = 0
 num_folds = 5
 cols = ['epoch', 'test-acc', 'test-precision', 'test-recall', 'test-f0.5-score', 'test-tp', 'test-fp', 'test-fn', 'test-tn']
 cols_new = ['epoch', 'accuracy', 'precision', 'recall', 'f05', 'tp', 'fp', 'fn', 'tn']
+metrics = ['accuracy', 'precision', 'recall', 'f05', 'gmean', 'auc', 'mcc']
 
 def get_result(csv_path):
     result = pd.read_csv(csv_path).sort_values('valid-loss')[cols].iloc[[0]]
@@ -54,4 +55,24 @@ for label in labels:
         result_dfs.append(result)
 
 results = pd.concat(result_dfs)
-results.to_csv(results_dir + '.csv', index=False)
+results_path = results_dir + '.csv'
+results.to_csv(results_path, index=False)
+print('Saved', results_path)
+
+agg_cols = ['label']
+for metric in metrics:
+    agg_cols.append(metric + '-mean')
+    agg_cols.append(metric + '-std')
+
+results_agg = pd.DataFrame(columns=agg_cols)
+for i, label in enumerate(labels):
+    label_results = results.loc[results['label'] == label]
+    agg_data = {'label': label}
+    for metric in metrics:
+        agg_data[metric + '-mean'] = label_results[metric].mean()
+        agg_data[metric + '-std'] = label_results[metric].std()
+    results_agg.loc[i] = agg_data
+
+results_agg_path = results_dir + '.agg.csv'
+results_agg.to_csv(results_agg_path, index=False)
+print('Saved', results_agg_path)
